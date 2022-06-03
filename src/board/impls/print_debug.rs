@@ -1,4 +1,4 @@
-use crate::{Board, FieldPrintDebug};
+use crate::{FieldPrintDebug, Board};
 
 impl FieldPrintDebug for Board {
     fn print_debug(&self) {

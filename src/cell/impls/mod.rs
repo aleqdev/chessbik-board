@@ -1,4 +1,4 @@
-use crate::{Piece, PieceColor, PieceTy};
+use crate::{Piece, PieceTy, PieceColor};
 
 pub use super::*;
 

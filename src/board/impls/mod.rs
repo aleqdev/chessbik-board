@@ -14,6 +14,9 @@ pub use board_new::*;
 pub mod print_debug;
 pub use print_debug::*;
 
+pub mod get_available_moves;
+pub use get_available_moves::*;
+
 impl Board {
     pub fn at<'a>(&'a self, fref: impl Into<PiecePosition>) -> &'a Cell {
         &self.cells[*fref.into()]
