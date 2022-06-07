@@ -19,9 +19,6 @@ pub use side::*;
 pub mod piece_orientation;
 pub use piece_orientation::*;
 
-pub mod cell;
-pub use cell::*;
-
 pub mod piece;
 pub use piece::*;
 
