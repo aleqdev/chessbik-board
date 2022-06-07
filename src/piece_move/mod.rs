@@ -8,5 +8,5 @@ use crate::PiecePosition;
 
 pub struct PieceMove {
     pub pos: PiecePosition,
-    pub ty: PieceMoveTy
+    pub ty: PieceMoveTy,
 }

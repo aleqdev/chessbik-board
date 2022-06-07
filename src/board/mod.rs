@@ -1,7 +1,8 @@
-use crate::Cell;
+use crate::Piece;
 
 pub mod impls;
+pub use impls::*;
 
-pub struct Board {
-    pub cells: [Cell; 9 * 6],
+pub struct Board<T> {
+    pub cells: [T; 9 * 6],
 }

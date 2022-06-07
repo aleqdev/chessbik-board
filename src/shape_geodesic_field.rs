@@ -41,6 +41,51 @@ print(y)
 
 */
 
+use std::slice::SliceIndex;
+
+use crate::{Board, GetAvailableMoves, GetPiece, PieceColor, PieceMove, PiecePosition};
+
+pub fn geodesic_calculator<T, U, P>(
+    pos: PiecePosition,
+    color: PieceColor,
+    range_per: T,
+    range_diag: U,
+    board: &Board<P>,
+) -> Vec<PieceMove>
+where
+    T: SliceIndex<[usize], Output = [usize]> + Copy,
+    U: SliceIndex<[usize], Output = [usize]> + Copy,
+    P: GetPiece + GetAvailableMoves<P> + Copy,
+{
+    let mut v = vec![];
+
+    for &per in self::PERPENDICULAR_FIELD[*pos] {
+        for &i in per[range_per].iter() {
+            if let Some(piece) = board.at(i).get_piece() {
+                if piece.color != color {
+                    v.push(PieceMove::take(i));
+                }
+                break;
+            }
+            v.push(PieceMove::slide(i))
+        }
+    }
+
+    for &diag in self::DIAGONAL_FIELD[*pos] {
+        for &i in diag[range_diag].iter() {
+            if let Some(piece) = board.at(i).get_piece() {
+                if piece.color != color {
+                    v.push(PieceMove::take(i));
+                }
+                break;
+            }
+            v.push(PieceMove::slide(i))
+        }
+    }
+
+    v
+}
+
 pub const DIAGONAL_FIELD: [&'static [&'static [usize]]; 54] = [
     &[
         &[4, 8],

@@ -1,5 +1,9 @@
-use crate::{PieceMove, PiecePosition};
+use crate::{Board, PieceMove, PiecePosition};
 
-pub trait GetAvailableMoves {
-    fn get_available_moves(&self, pos: impl Into<PiecePosition>) -> Vec<PieceMove>;
+pub trait GetAvailableMoves<T> {
+    fn get_available_moves(
+        &self,
+        pos: impl Into<PiecePosition>,
+        board: &Board<T>,
+    ) -> Vec<PieceMove>;
 }

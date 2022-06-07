@@ -1,4 +1,6 @@
-use crate::{Piece, PieceTy, PieceColor};
+use crate::{PieceColor, PieceTy};
+
+use super::*;
 
 impl std::fmt::Display for Piece {
     #[cfg(any(unix, feature = "rich_piece_display"))]

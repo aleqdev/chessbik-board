@@ -1,11 +1,14 @@
+use crate::{PieceDescriptor, Side};
+
 pub mod impls;
 pub use impls::*;
-
-use crate::Piece;
 
 chessbik_commons::derive_wrapper!(
     #[derive(Clone, Copy)]
     pub struct Cell {
-        pub value: Option<Piece>,
+        #[deref]
+        #[deref_mut]
+        pub piece: Option<PieceDescriptor>,
+        pub side: Side,
     }
 );

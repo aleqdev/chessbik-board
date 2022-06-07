@@ -1,12 +1,8 @@
-use crate::BoardNew;
-
-pub use super::*;
-
-impl BoardNew for Board {
-    fn new() -> Self {
-        Self {
+impl BoardNew for Cell {
+    fn board_new<Cell>() -> Board<Cell> {
+        Board {
             cells: [
-                Cell::BPAWN,
+                Cell::black_pawn(),
                 Cell::BPAWN,
                 Cell::BPAWN,
                 Cell::NONE,

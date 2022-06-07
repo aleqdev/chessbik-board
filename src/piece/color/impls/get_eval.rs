@@ -1,4 +1,4 @@
-use crate::{GetEval, Eval};
+use crate::{Eval, GetEval};
 
 use super::*;
 

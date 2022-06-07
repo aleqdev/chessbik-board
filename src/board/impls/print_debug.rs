@@ -1,6 +1,8 @@
-use crate::{FieldPrintDebug, Board};
+use std::fmt::Display;
 
-impl FieldPrintDebug for Board {
+use crate::{Board, BoardPrintDebug};
+
+impl<T: Display> BoardPrintDebug for Board<T> {
     fn print_debug(&self) {
         #[allow(non_upper_case_globals)]
         const align: &str = "       ";

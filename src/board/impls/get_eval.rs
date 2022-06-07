@@ -1,8 +1,8 @@
-use crate::{GetEval, Eval};
+use crate::{Eval, GetEval};
 
 use super::*;
 
-impl GetEval for Board {
+impl<T: AsRef<Piece>> GetEval for Board<T> {
     fn get_eval(&self) -> Eval {
         todo!()
     }
