@@ -1,5 +1,5 @@
-use crate::{Board, Piece};
+use crate::Board;
 
 pub trait BoardNew {
-    fn board_new<T: AsRef<Piece>>() -> Board<T>;
+    fn board_new<T>() -> Board<T>;
 }

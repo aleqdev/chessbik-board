@@ -8,6 +8,9 @@ pub use get_eval::*;
 pub mod print_debug;
 pub use print_debug::*;
 
+pub mod default;
+pub use default::*;
+
 impl<T: GetPiece + GetAvailableMoves<T> + Copy> Board<T> {
     pub fn at<'a>(&'a self, pos: impl Into<PiecePosition>) -> &'a T {
         &self.cells[*pos.into()]
