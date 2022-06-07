@@ -28,9 +28,6 @@ pub use get_piece::*;
 pub mod piece_descriptor;
 pub use piece_descriptor::*;
 
-pub mod into_piece_descriptor;
-pub use into_piece_descriptor::*;
-
 pub mod get_eval;
 pub use get_eval::*;
 

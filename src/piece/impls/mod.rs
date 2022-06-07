@@ -6,9 +6,6 @@ pub use get_eval::*;
 pub mod display;
 pub use display::*;
 
-pub mod into_piece_descriptor;
-pub use into_piece_descriptor::*;
-
 pub mod get_available_moves;
 pub use get_available_moves::*;
 
