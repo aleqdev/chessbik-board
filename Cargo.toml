@@ -6,6 +6,7 @@ edition = "2021"
 [dependencies]
 chessbik-derive-wrapper = { git = "https://github.com/necromfox/chessbik-derive-wrapper" }
 derive_more = "^0.99.17"
+serde = "*"
 
 [features]
 rich_piece_display = []
