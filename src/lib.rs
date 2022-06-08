@@ -10,9 +10,6 @@ pub use piece_position::*;
 pub mod piece_move;
 pub use piece_move::*;
 
-pub mod side;
-pub use side::*;
-
 pub mod piece_orientation;
 pub use piece_orientation::*;
 
