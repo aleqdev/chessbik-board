@@ -1,12 +1,15 @@
-use crate::{shape_geodesic_field, Board, GetAvailableMoves, GetPiece, PieceMove, PiecePosition};
+use crate::{shape_geodesic_field, Board, GetAvailableMoves, PieceMove, PiecePosition};
 
 use super::*;
 
-impl GetAvailableMoves<Piece> for Piece {
+impl<T> GetAvailableMoves<T> for Piece 
+where
+    T: GetPiece + GetAvailableMoves<T> + Copy
+{
     fn get_available_moves(
         &self,
         pos: impl Into<PiecePosition>,
-        board: &Board<Piece>,
+        board: &Board<T>,
     ) -> Vec<PieceMove> {
         let pos = pos.into();
 

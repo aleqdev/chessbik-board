@@ -1,3 +1,5 @@
+use crate::GetPiece;
+
 pub use super::*;
 
 pub mod get_eval;
@@ -83,3 +85,26 @@ impl Piece {
         color: PieceColor::BLACK,
     };
 }
+
+/*impl<U> GetPiece for U
+where
+    U: AsRef<Piece>
+{
+    fn get_piece(&self) -> Option<&crate::Piece> {
+        self.as_ref().get_piece()
+    }
+}
+
+impl<T, U> GetAvailableMoves<T> for U
+where
+    U: AsRef<Piece>,
+    T: AsRef<Piece>
+{
+    fn get_available_moves(
+        &self,
+        pos: impl Into<crate::PiecePosition>,
+        board: &crate::Board<impl AsRef<Piece>>,
+    ) -> Vec<crate::PieceMove> {
+        self.as_ref().get_available_moves(pos, board)
+    }
+}*/
