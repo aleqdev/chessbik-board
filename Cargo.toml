@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-chessbik-commons = { git = "https://github.com/necromfox/chessbik-commons" }
+chessbik-derive-wrapper = { git = "https://github.com/necromfox/chessbik-derive-wrapper" }
 derive_more = "^0.99.17"
 
 [features]
