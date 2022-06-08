@@ -1,4 +1,4 @@
 chessbik_commons::derive_wrapper!(
-    #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy)]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
     pub struct PiecePosition(pub usize);
 );

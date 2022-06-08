@@ -1,4 +1,4 @@
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Side {
     TOP,
     LEFT,
