@@ -1,5 +1,5 @@
 use std::{fmt, marker::PhantomData};
-use serde::de::Error;
+use serde::{de::{Error, Visitor, SeqAccess}, Deserialize};
 
 use super::*;
 
@@ -14,9 +14,9 @@ impl<T> BoardVisitor<T> {
 }
 
 
-impl<'de, T> serde::de::Visitor<'de> for BoardVisitor<T>
+impl<'de, T> Visitor<'de> for BoardVisitor<T>
 where 
-    T: serde::Deserialize<'de>
+    T: Deserialize<'de>
 {
     type Value = Board<T>;
 
@@ -26,7 +26,7 @@ where
 
     fn visit_seq<A>(self, mut seq: A) -> Result<Self::Value, A::Error>
     where
-        A: serde::de::SeqAccess<'de>,
+        A: SeqAccess<'de>,
     {
         let mut it = std::iter::from_fn(|| {
             Some(seq.next_element())

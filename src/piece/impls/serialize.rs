@@ -1,9 +1,11 @@
+use serde::{Serializer, Serialize};
+
 use super::*;
 
-impl serde::Serialize for Piece {
+impl Serialize for Piece {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
-        S: serde::Serializer 
+        S: Serializer 
     {
         serializer.serialize_char(match (self.ty, self.color) {
             (PieceTy::PAWN, PieceColor::WHITE) => 'P',

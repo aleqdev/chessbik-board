@@ -20,6 +20,9 @@ pub use serialize::*;
 pub mod deserialize;
 pub use deserialize::*;
 
+pub mod visitor;
+pub use visitor::*;
+
 impl Piece {
     pub const WHITE_PAWN: Self = Self {
         ty: PieceTy::PAWN,
