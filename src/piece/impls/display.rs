@@ -6,21 +6,21 @@ impl std::fmt::Display for Piece {
     #[cfg(any(unix, feature = "rich_piece_display"))]
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match (self.ty, self.color) {
-            (PieceTy::PAWN, PieceColor::WHITE) => "♙".fmt(f),
-            (PieceTy::ROOK, PieceColor::WHITE) => "♖".fmt(f),
-            (PieceTy::KNIGHT, PieceColor::WHITE) => "♘".fmt(f),
-            (PieceTy::BISHOP, PieceColor::WHITE) => "♗".fmt(f),
-            (PieceTy::QUEEN, PieceColor::WHITE) => "♕".fmt(f),
-            (PieceTy::KING, PieceColor::WHITE) => "♔".fmt(f),
-            (PieceTy::MAGE, PieceColor::WHITE) => "◇".fmt(f),
+            (PieceTy::PAWN, PieceColor::BLACK) => "♙".fmt(f),
+            (PieceTy::ROOK, PieceColor::BLACK) => "♖".fmt(f),
+            (PieceTy::KNIGHT, PieceColor::BLACK) => "♘".fmt(f),
+            (PieceTy::BISHOP, PieceColor::BLACK) => "♗".fmt(f),
+            (PieceTy::QUEEN, PieceColor::BLACK) => "♕".fmt(f),
+            (PieceTy::KING, PieceColor::BLACK) => "♔".fmt(f),
+            (PieceTy::MAGE, PieceColor::BLACK) => "◇".fmt(f),
 
-            (PieceTy::PAWN, PieceColor::BLACK) => "♟".fmt(f),
-            (PieceTy::ROOK, PieceColor::BLACK) => "♜".fmt(f),
-            (PieceTy::KNIGHT, PieceColor::BLACK) => "♞".fmt(f),
-            (PieceTy::BISHOP, PieceColor::BLACK) => "♝".fmt(f),
-            (PieceTy::QUEEN, PieceColor::BLACK) => "♛".fmt(f),
-            (PieceTy::KING, PieceColor::BLACK) => "♚".fmt(f),
-            (PieceTy::MAGE, PieceColor::BLACK) => "◈".fmt(f),
+            (PieceTy::PAWN, PieceColor::WHITE) => "♟".fmt(f),
+            (PieceTy::ROOK, PieceColor::WHITE) => "♜".fmt(f),
+            (PieceTy::KNIGHT, PieceColor::WHITE) => "♞".fmt(f),
+            (PieceTy::BISHOP, PieceColor::WHITE) => "♝".fmt(f),
+            (PieceTy::QUEEN, PieceColor::WHITE) => "♛".fmt(f),
+            (PieceTy::KING, PieceColor::WHITE) => "♚".fmt(f),
+            (PieceTy::MAGE, PieceColor::WHITE) => "◈".fmt(f),
         }
     }
 
