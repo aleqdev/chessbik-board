@@ -30,7 +30,7 @@ where
     {
         let mut it = std::iter::from_fn(|| {
             Some(seq.next_element())
-        });
+        }).take(54);
 
         let it: Vec<Option<T>> = it.try_fold(Vec::with_capacity(54), |mut vec, x| {
             vec.push(x?); 
