@@ -14,6 +14,12 @@ pub use default::*;
 pub mod serialize;
 pub use serialize::*;
 
+pub mod deserialize;
+pub use deserialize::*;
+
+pub mod visitor;
+pub use visitor::*;
+
 impl<T: GetPiece + GetAvailableMoves<T> + Copy> Board<T> {
     pub fn at<'a>(&'a self, pos: impl Into<PiecePosition>) -> &'a T {
         &self.cells[*pos.into()]
