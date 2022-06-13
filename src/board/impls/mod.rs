@@ -16,6 +16,10 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize> Board<T> {
         &self.cells[*pos.into()]
     }
 
+    pub fn at_mut<'a>(&'a mut self, pos: impl Into<PiecePosition>) -> &'a mut T {
+        &mut self.cells[*pos.into()]
+    }
+
     pub fn get_available_moves(&self, pos: impl Into<PiecePosition>) -> Vec<PieceMove> {
         let pos = pos.into();
         let cell = &self.cells[*pos];
