@@ -2,23 +2,17 @@ pub use super::*;
 
 impl PieceMove {
     pub fn slide(pos: impl Into<PiecePosition>) -> Self {
-        Self {
-            pos: pos.into(),
-            ty: PieceMoveTy::Slide,
-        }
+        Self::Slide(pos.into())
     }
 
     pub fn take(pos: impl Into<PiecePosition>) -> Self {
-        Self {
-            pos: pos.into(),
-            ty: PieceMoveTy::Take,
-        }
+        Self::Take(pos.into())
     }
 
-    pub fn castle(pos: impl Into<PiecePosition>) -> Self {
-        Self {
-            pos: pos.into(),
-            ty: PieceMoveTy::Castle,
+    pub fn eq_position(&self, pos: PiecePosition) -> bool {
+        match self {
+            Self::Slide(p) => *p == pos,
+            Self::Take(p) => *p == pos,
         }
     }
 }
