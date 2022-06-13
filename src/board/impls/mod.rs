@@ -25,4 +25,11 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize> Board<T> {
         let cell = &self.cells[*pos];
         cell.get_available_moves(pos, self)
     }
+
+    pub fn make_move_unchecked(&mut self, from: PiecePosition, mv: PieceMove) {
+        match mv {
+            PieceMove::Slide(to) |
+            PieceMove::Take(to) => self.translate(from, to),
+        }
+    }
 }
