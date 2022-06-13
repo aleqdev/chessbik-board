@@ -4,7 +4,7 @@ use super::*;
 
 impl<T> GetAvailableMoves<T> for Piece 
 where
-    T: GetPiece + GetAvailableMoves<T> + Copy
+    T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize
 {
     fn get_available_moves(
         &self,

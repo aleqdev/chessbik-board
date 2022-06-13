@@ -55,7 +55,7 @@ pub fn geodesic_calculator<T, U, P>(
 where
     T: SliceIndex<[usize], Output = [usize]> + Copy,
     U: SliceIndex<[usize], Output = [usize]> + Copy,
-    P: GetPiece + GetAvailableMoves<P> + Copy,
+    P: GetPiece + GetAvailableMoves<P> + Copy + serde::Serialize,
 {
     let mut v = vec![];
 

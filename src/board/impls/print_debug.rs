@@ -2,7 +2,7 @@ use std::fmt::Display;
 
 use crate::{Board, BoardPrintDebug};
 
-impl<T: Display> BoardPrintDebug for Board<T> {
+impl<T: Display + serde::Serialize> BoardPrintDebug for Board<T> {
     fn print_debug(&self) {
         #[allow(non_upper_case_globals)]
         const align: &str = "       ";

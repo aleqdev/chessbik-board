@@ -19,4 +19,7 @@ pub use piece::*;
 pub mod board;
 pub use board::*;
 
+pub mod board_status;
+pub use board_status::*;
+
 pub mod shape_geodesic_field;
