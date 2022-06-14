@@ -1,4 +1,6 @@
-use crate::{shape_geodesic_field, Board, GetAvailableMoves, PieceMove, PiecePosition};
+use num_traits::FromPrimitive;
+
+use crate::{shape_geodesic_field, Board, GetAvailableMoves, PieceMove, PiecePosition, cube_rotations_field, CubeRotation};
 
 use super::*;
 
@@ -14,7 +16,9 @@ where
         let pos = pos.into();
 
         match self.ty {
-            PieceTy::PAWN => vec![],
+            PieceTy::PAWN => {
+                shape_geodesic_field::geodesic_calculator(pos, self.color, ..1, ..0, board)
+            }
             PieceTy::ROOK => {
                 shape_geodesic_field::geodesic_calculator(pos, self.color, .., ..0, board)
             }
@@ -41,7 +45,16 @@ where
                 shape_geodesic_field::geodesic_calculator(pos, self.color, ..1, ..1, board)
             }
             PieceTy::MAGE => {
-                shape_geodesic_field::geodesic_calculator(pos, self.color, ..1, ..1, board)
+                let mut v = shape_geodesic_field::geodesic_calculator(pos, self.color, ..1, ..1, board);
+
+                for i in 0..27 {
+                    let pair = cube_rotations_field::FIELD[i];
+                    if pair[0].contains(&pos) {
+                        v.push(PieceMove::Rotation(CubeRotation::from_usize(i).unwrap()));
+                    }
+                }
+
+                v
             }
         }
     }

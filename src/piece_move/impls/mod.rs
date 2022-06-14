@@ -11,8 +11,9 @@ impl PieceMove {
 
     pub fn eq_position(&self, pos: PiecePosition) -> bool {
         match self {
-            Self::Slide(p) => *p == pos,
+            Self::Slide(p) |
             Self::Take(p) => *p == pos,
+            Self::Rotation(..) => false
         }
     }
 }

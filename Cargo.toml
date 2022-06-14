@@ -8,6 +8,8 @@ chessbik-derive-wrapper = { git = "https://github.com/necromfox/chessbik-derive-
 derive_more = "^0.99.17"
 serde = { version = "*", features = ["derive"] }
 serde-big-array = "0.4.1"
+enum-primitive-derive = "^0.1"
+num-traits = "^0.1"
 
 [features]
 rich_piece_display = []
