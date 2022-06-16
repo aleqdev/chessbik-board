@@ -1,6 +1,6 @@
 use std::cell::RefCell;
 
-use crate::{shape_geodesic_field, GetAvailableMoves, GetPiece, PieceMove, PiecePosition, PieceTy, BoardTransform, cube_rotations_field};
+use crate::{shape_geodesic_field, GetAvailableMoves, GetPiece, PieceMove, PiecePosition, PieceTy, BoardTransform, cube_rotations_field, PieceColor};
 
 pub use super::*;
 
@@ -57,18 +57,22 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
         }
     }
 
-    pub fn validate(&self) -> bool {
+    pub fn validate(&self, color_of_king: PieceColor) -> bool {
         thread_local! {
-            static LAST_KING_POS: RefCell<PiecePosition> = RefCell::new(PiecePosition(0));
+            static LAST_WHITE_KING_POS: RefCell<PiecePosition> = RefCell::new(PiecePosition(0));
+            static LAST_BLACK_KING_POS: RefCell<PiecePosition> = RefCell::new(PiecePosition(0));
         }
 
-        LAST_KING_POS.with(|last_pos| {
+        match color_of_king {
+            PieceColor::WHITE => &LAST_WHITE_KING_POS,
+            PieceColor::BLACK => &LAST_BLACK_KING_POS
+        }.with(|last_pos| {
             let mut last_pos = last_pos.borrow_mut();
 
             if self
                 .at(*last_pos)
                 .get_piece()
-                .map_or(true, |p| p.ty != PieceTy::KING)
+                .map_or(true, |p| p.ty != PieceTy::KING || p.color != color_of_king)
             {
                 for i in 0..54 {
                     if self
@@ -82,7 +86,7 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
                 }
             }
 
-            let color = self.at(*last_pos).get_piece().unwrap().color.opposite();
+            let color = color_of_king.opposite();
 
             for m in shape_geodesic_field::geodesic_calculator(*last_pos, color, .., ..0, self) {
                 match m {
