@@ -146,7 +146,7 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
             }
 
             for m in
-                shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, ..1, ..0, self)
+                shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, ..0, ..1, self)
             {
                 match m {
                     PieceMove::Take(pos) => {
