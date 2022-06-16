@@ -65,7 +65,7 @@ where
         moves.retain(|m| {
             let mut new_board = board.clone();
             new_board.apply_move_unchecked(*m, Some(pos));
-            new_board.validate(self.color.opposite())
+            new_board.validate(self.color)
         });
         
         moves
