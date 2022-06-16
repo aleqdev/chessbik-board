@@ -68,7 +68,7 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
             if self
                 .at(*last_pos)
                 .get_piece()
-                .map_or(false, |p| p.ty != PieceTy::KING)
+                .map_or(true, |p| p.ty != PieceTy::KING)
             {
                 for i in 0..54 {
                     if self
