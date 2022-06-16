@@ -11,17 +11,15 @@ impl PieceMove {
 
     pub fn eq_position(&self, pos: &PiecePosition) -> bool {
         match self {
-            Self::Slide(p) |
-            Self::Take(p) => *p == *pos,
-            Self::Rotation(..) => false
+            Self::Slide(p) | Self::Take(p) => *p == *pos,
+            Self::Rotation(..) => false,
         }
     }
 
     pub fn eq_rotation(&self, rot: &CubeRotation) -> bool {
         match self {
-            Self::Slide(..) |
-            Self::Take(..) => false,
-            Self::Rotation(r) => *r == *rot
+            Self::Slide(..) | Self::Take(..) => false,
+            Self::Rotation(r) => *r == *rot,
         }
     }
 }

@@ -43,7 +43,7 @@ print(y)
 
 use std::slice::SliceIndex;
 
-use crate::{Board, GetAvailableMoves, GetPiece, PieceColor, PieceMove, PiecePosition};
+use crate::{Board, GetAvailableMoves, GetPiece, PieceColor, PieceMove, PiecePosition, BoardTransform};
 
 pub fn geodesic_calculator<T, U, P>(
     pos: PiecePosition,
@@ -55,7 +55,7 @@ pub fn geodesic_calculator<T, U, P>(
 where
     T: SliceIndex<[usize], Output = [usize]> + Copy,
     U: SliceIndex<[usize], Output = [usize]> + Copy,
-    P: GetPiece + GetAvailableMoves<P> + Copy + serde::Serialize,
+    P: GetPiece + GetAvailableMoves<P> + Copy + serde::Serialize + BoardTransform,
 {
     let mut v = vec![];
 

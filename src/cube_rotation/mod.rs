@@ -4,7 +4,18 @@ pub mod impls;
 pub use impls::*;
 
 #[allow(non_camel_case_types)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, serde::Serialize, serde::Deserialize, Primitive)]
+#[derive(
+    Debug,
+    Clone,
+    Copy,
+    PartialEq,
+    Eq,
+    PartialOrd,
+    Ord,
+    serde::Serialize,
+    serde::Deserialize,
+    Primitive,
+)]
 pub enum CubeRotation {
     U = 0,
     D = 1,
@@ -38,5 +49,5 @@ pub enum CubeRotation {
     S2 = 23,
     M_P = 24,
     E_P = 25,
-    S_P = 26
+    S_P = 26,
 }

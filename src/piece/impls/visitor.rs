@@ -1,4 +1,4 @@
-use serde::de::{Error, Visitor, Unexpected};
+use serde::de::{Error, Unexpected, Visitor};
 
 use super::*;
 
@@ -15,7 +15,7 @@ impl<'de> Visitor<'de> for PieceVisitor {
 
     fn visit_char<E>(self, v: char) -> Result<Self::Value, E>
     where
-        E: Error, 
+        E: Error,
     {
         match v {
             'P' => Ok(Piece::WHITE_PAWN),
@@ -32,7 +32,7 @@ impl<'de> Visitor<'de> for PieceVisitor {
             'k' => Ok(Piece::BLACK_KING),
             'M' => Ok(Piece::WHITE_MAGE),
             'm' => Ok(Piece::BLACK_MAGE),
-            c => Err(Error::invalid_value(Unexpected::Char(c), &EXPECTING))
+            c => Err(Error::invalid_value(Unexpected::Char(c), &EXPECTING)),
         }
     }
 }
