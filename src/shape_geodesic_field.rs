@@ -43,7 +43,9 @@ print(y)
 
 use std::slice::SliceIndex;
 
-use crate::{Board, GetAvailableMoves, GetPiece, PieceColor, PieceMove, PiecePosition, BoardTransform};
+use crate::{
+    Board, BoardTransform, GetAvailableMoves, GetPiece, PieceColor, PieceMove, PiecePosition,
+};
 
 pub fn geodesic_calculator<T, U, P>(
     pos: PiecePosition,

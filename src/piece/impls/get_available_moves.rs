@@ -1,8 +1,8 @@
 use num_traits::FromPrimitive;
 
 use crate::{
-    cube_rotations_field, shape_geodesic_field, Board, CubeRotation, GetAvailableMoves, PieceMove,
-    PiecePosition, BoardTransform,
+    cube_rotations_field, shape_geodesic_field, Board, BoardTransform, CubeRotation,
+    GetAvailableMoves, PieceMove, PiecePosition,
 };
 
 use super::*;
@@ -20,7 +20,27 @@ where
 
         let mut moves = match self.ty {
             PieceTy::PAWN => {
-                shape_geodesic_field::geodesic_calculator(pos, self.color, ..1, ..0, board)
+                let mut v = vec![];
+
+                v.extend(
+                    shape_geodesic_field::geodesic_calculator(pos, self.color, ..1, ..0, board)
+                        .iter()
+                        .filter(|m| match m {
+                            PieceMove::Slide(..) => true,
+                            _ => false,
+                        }),
+                );
+
+                v.extend(
+                    shape_geodesic_field::geodesic_calculator(pos, self.color, ..0, ..1, board)
+                        .iter()
+                        .filter(|m| match m {
+                            PieceMove::Take(..) => true,
+                            _ => false,
+                        }),
+                );
+
+                v
             }
             PieceTy::ROOK => {
                 shape_geodesic_field::geodesic_calculator(pos, self.color, .., ..0, board)
@@ -67,7 +87,7 @@ where
             new_board.apply_move_unchecked(*m, Some(pos));
             new_board.validate(self.color)
         });
-        
+
         moves
     }
 }

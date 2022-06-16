@@ -1,6 +1,9 @@
 use std::cell::RefCell;
 
-use crate::{shape_geodesic_field, GetAvailableMoves, GetPiece, PieceMove, PiecePosition, PieceTy, BoardTransform, cube_rotations_field, PieceColor};
+use crate::{
+    cube_rotations_field, shape_geodesic_field, BoardTransform, GetAvailableMoves, GetPiece,
+    PieceColor, PieceMove, PiecePosition, PieceTy,
+};
 
 pub use super::*;
 
@@ -30,8 +33,7 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
 
     pub fn apply_move_unchecked(&mut self, m: PieceMove, from: Option<PiecePosition>) {
         match m {
-            PieceMove::Slide(m) |
-            PieceMove::Take(m) => {
+            PieceMove::Slide(m) | PieceMove::Take(m) => {
                 let from = from.unwrap();
                 let at = *self.at(from);
                 self.at_mut(m).by_slide(&at);
@@ -53,7 +55,7 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
         match self.status {
             BoardStatus::WhitesMove => self.status = BoardStatus::BlacksMove,
             BoardStatus::BlacksMove => self.status = BoardStatus::WhitesMove,
-            BoardStatus::Mate => {},
+            BoardStatus::Mate => {}
         }
     }
 
@@ -65,8 +67,9 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
 
         match color_of_king {
             PieceColor::WHITE => &LAST_WHITE_KING_POS,
-            PieceColor::BLACK => &LAST_BLACK_KING_POS
-        }.with(|last_pos| {
+            PieceColor::BLACK => &LAST_BLACK_KING_POS,
+        }
+        .with(|last_pos| {
             let mut last_pos = last_pos.borrow_mut();
 
             if self
@@ -86,7 +89,9 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
                 }
             }
 
-            for m in shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, .., ..0, self) {
+            for m in
+                shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, .., ..0, self)
+            {
                 match m {
                     PieceMove::Take(pos) => {
                         if [PieceTy::QUEEN, PieceTy::ROOK]
@@ -99,7 +104,9 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
                 }
             }
 
-            for m in shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, ..0, .., self) {
+            for m in
+                shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, ..0, .., self)
+            {
                 match m {
                     PieceMove::Take(pos) => {
                         if [PieceTy::QUEEN, PieceTy::BISHOP]
@@ -123,7 +130,9 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
                 }
             }
 
-            for m in shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, ..1, ..1, self) {
+            for m in
+                shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, ..1, ..1, self)
+            {
                 match m {
                     PieceMove::Take(pos) => {
                         if [PieceTy::KING, PieceTy::MAGE]
@@ -136,7 +145,9 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
                 }
             }
 
-            for m in shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, ..1, ..0, self) {
+            for m in
+                shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, ..1, ..0, self)
+            {
                 match m {
                     PieceMove::Take(pos) => {
                         if self.at(pos).get_piece().unwrap().ty == PieceTy::PAWN {
