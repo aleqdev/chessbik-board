@@ -63,8 +63,6 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
             static LAST_BLACK_KING_POS: RefCell<PiecePosition> = RefCell::new(PiecePosition(0));
         }
 
-        println!("validating: {:?}", color_of_king);
-
         match color_of_king {
             PieceColor::WHITE => &LAST_WHITE_KING_POS,
             PieceColor::BLACK => &LAST_BLACK_KING_POS
@@ -80,15 +78,13 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
                     if self
                         .at(i)
                         .get_piece()
-                        .map_or(false, |p| p.ty == PieceTy::KING)
+                        .map_or(false, |p| p.ty == PieceTy::KING && p.color == color_of_king)
                     {
                         *last_pos = i.into();
                         break;
                     }
                 }
             }
-
-            println!("king position: {:?}", last_pos);
 
             for m in shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, .., ..0, self) {
                 match m {
