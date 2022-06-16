@@ -89,6 +89,7 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
             println!("color: {:?}. pos: {:?}", color_of_king, last_pos);
 
             for m in shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, .., ..0, self) {
+                println!("q/r: {:?}", m);
                 match m {
                     PieceMove::Take(pos) => {
                         if [PieceTy::QUEEN, PieceTy::ROOK]
@@ -102,6 +103,7 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
             }
 
             for m in shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, ..0, .., self) {
+                println!("q/b: {:?}", m);
                 match m {
                     PieceMove::Take(pos) => {
                         if [PieceTy::QUEEN, PieceTy::BISHOP]
@@ -115,6 +117,7 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
             }
 
             for pos in shape_geodesic_field::KNIGHT_FIELD[**last_pos] {
+                println!("k: {:?}", pos);
                 match self.at(*pos).get_piece() {
                     Some(piece) => {
                         if piece.color != color_of_king && piece.ty == PieceTy::KNIGHT {
@@ -126,6 +129,7 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
             }
 
             for m in shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, ..1, ..1, self) {
+                println!("k/m: {:?}", m);
                 match m {
                     PieceMove::Take(pos) => {
                         if [PieceTy::KING, PieceTy::MAGE]
@@ -139,6 +143,7 @@ impl<T: GetPiece + GetAvailableMoves<T> + Copy + serde::Serialize + BoardTransfo
             }
 
             for m in shape_geodesic_field::geodesic_calculator(*last_pos, color_of_king, ..1, ..0, self) {
+                println!("p: {:?}", m);
                 match m {
                     PieceMove::Take(pos) => {
                         if self.at(pos).get_piece().unwrap().ty == PieceTy::PAWN {
