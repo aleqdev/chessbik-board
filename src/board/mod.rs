@@ -1,4 +1,4 @@
-use crate::{BoardStatus, Piece};
+use crate::BoardStatus;
 
 pub mod impls;
 pub use impls::*;

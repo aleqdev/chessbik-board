@@ -3,7 +3,7 @@ use crate::{Eval, GetEval};
 use super::*;
 
 impl<T> GetEval for Board<T> 
-where T: AsRef<Piece> + serde::Serialize + GetPiece + GetAvailableMoves<T> + Copy + BoardTransform
+where T: serde::Serialize + GetPiece + GetAvailableMoves<T> + Copy + BoardTransform
 {
     fn get_eval(&self) -> Eval {
         let mut e = Eval(0.);
